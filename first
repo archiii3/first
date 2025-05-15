@@ -1,7 +1,10 @@
 
 for (let filePath of getAllFiles("dist")) {
   console.log(`- ${filePath}`);
-
+});
+const uploadResults = [];
+for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
 });
 const uploadResults = [];
 for (let filePath of getAllFiles("dist")) {
