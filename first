@@ -36,7 +36,10 @@ for (let filePath of getAllFiles("dist")) {
       tags: [{ name: "Content-Type", value: mimeTypes.lookup(filePath) }],
   });
   return allFiles;
-
+});
+const uploadResults = [];
+for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
 celestia-appd keys add $CELESTIA_WALLET
 wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.23-d901d8
 celestia-appd keys add $CELESTIA_WALLET
