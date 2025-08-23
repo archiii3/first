@@ -127,3 +127,4 @@ pip install --upgrade pip
 source /root/nulink-venv/bin/activate
 docker run -it --rm \
 -p 9151:9151 \
+5c521c41a8c3f2c36c7d0b8de9d7e68a454cecc3
