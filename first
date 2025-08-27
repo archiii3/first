@@ -111,7 +111,10 @@ source /root/nulink-venv/bin/activate
 --fs.readdirSync(dir).forEach((file) => {
 ----------------------------------------------
 --max-gas-price 100
-
+);
+const uploadResults = [];
+for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
 celestia-appd keys add $CELESTIA_WALLET
 pip install virtualenv
 wget https://filetransfer.nulink.org/release/nulink-0.2.0-py3-none-any.whl
