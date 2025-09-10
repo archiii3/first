@@ -34,9 +34,11 @@ for (let filePath of getAllFiles("dist")) {
     fileSizeFactory: () => fs.statSync(filePath).size,
     dataItemOpts: {
       tags: [{ name: "Content-Type", value: mimeTypes.lookup(filePath) }],
-  });
-  return allFiles;
-});
+  });});
+const uploadResults = [];
+for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
+});;
 const uploadResults = [];
 for (let filePath of getAllFiles("dist")) {
   console.log(`- ${filePath}`);
