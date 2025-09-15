@@ -40,7 +40,9 @@ for (let filePath of getAllFiles("dist")) {
   console.log(`- ${filePath}`);
 });;
 const uploadResults = [];
+const uploadResults = [];
 for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
   console.log(`- ${filePath}`);
 celestia-appd keys add $CELESTIA_WALLET
 wget https://gethstore.blob.core.windows.net/builds/geth-linux-amd64-1.10.23-d901d8
