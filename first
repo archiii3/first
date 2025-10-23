@@ -23,9 +23,10 @@ for (let filePath of getAllFiles("dist")) {
 
 virtualenv /root/nulink-venv
 const result = await turbo.uploadFile({
-source /root/nulink-venv/bin/activateconst turbo = TurboSdk.TurboFactory.authenticated({
-  privateKey: JSON.parse(fs.readFileSync("key.json", { encoding: "utf-8" })),
+source /root/nulet filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}`);
 });
+const uploadResults
 const uploadResults = [];
 for (let filePath of getAllFiles("dist")) {
   console.log(`- ${filePath}`);
