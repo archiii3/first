@@ -16,6 +16,9 @@ const uploadResults = [];
 for (let filePath of getAllFiles("dist")) {
   console.log(`- ${filePath}`);
 });
+const uploadResults = [];
+for (let filePath of getAllFiles("dist")) {
+  console.log(`- ${filePath}
     fileStreamFactory: () => fs.createReadStream(filePath),
     fileSizeFactory: () => fs.statSync(filePath).size,
     dataItemOpts: {
