@@ -1,0 +1,103 @@
+# car.py
+# Simple in-memory simulation of a car's basic state.
+# This is safe: it does NOT interact with any real vehicle or hardware.
+
+from dataclasses import dataclass, field
+from datetime import datetime
+
+@dataclass
+class Car:
+    id: str
+    is_on: bool = True
+    speed_kph: float = 0.0
+    last_updated: datetime = field(default_factory=datetime.utcnow)
+
+    def shutdown(self):
+        if not self.is_on:
+            return {"ok": False, "msg": "Car already off"}
+        self.is_on = False
+        self.speed_kph = 0.0
+        self.last_updated = datetime.utcnow()
+        return {"ok": True, "msg": "Car shut down (simulation)"}
+
+    def start(self):
+        if self.is_on:
+            return {"ok": False, "msg": "Car already on"}
+        self.is_on = True
+        self.last_updated = datetime.utcnow()
+        return {"ok": True, "msg": "Car started (simulation)"}
+
+    def set_speed(self, kph: float):
+        if not self.
+# app.py
+# Local Flask app that exposes a safe simulation API for a virtual car.
+# NOTE: This app is configured to run on localhost only (127.0.0.1).
+# Do NOT expose this to the public internet without proper security controls.
+from flask import Flask, jsonify, request, abort
+from car import Car
+
+app = Flask(__name__)
+
+# Create a single simulated car instance
+sim_car = Car(id="SIM-001", is_on=True, speed_kph=0.0)
+
+def require_json():
+    if not request.is_json:
+        abort(400, description="Expected JSON body")
+
+@app.route("/api/v1/car/status", methods=["GET"])
+def status():
+    return jsonify({"ok": True, "car": sim_car.status()})
+
+@app.route("/api/v1/car/shutdown", methods=["POST"])
+def shutdown():
+    # Simulated remote shutdown. No real-world effect.
+    # In a real system you'd require strong auth, logging, and safety checks.
+    result = sim_car.shutdown()
+    return jsonify(result)
+
+@app.route("/api/v1/car/start", methods=["POST"])
+def start():
+    result = sim_car.start()
+    return jsonify(result)
+
+@app.route("/api/v1/car/speed", methods=["POST"])
+def set_speed():
+    require_json()
+    body = request.get_json()
+    if "kph" not in body:
+        abort(400, description="Missing 'kph' field")
+    try:
+        kph = float(body["kph"])
+    except (ValueError, TypeError):
+        abort(400, description="'kph' must be a number")
+    result = sim_car.set_speed(kph)
+    return jsonify(result)
+
+if __name__ == "__main__":
+    # Only bind to localhost by default.
+    app.run(host="127.0.0.1", port=5000, debug=True)
+Flask>=2.0
+# Remote Car Controller (SIM) — Simulation Only
+
+**Important:** This repository is a *simulation* for educational and testing purposes only.
+It does **NOT** interact with real vehicles or hardware and must not be used for controlling
+real-world vehicles. The author disclaims any misuse.
+
+## What is this?
+A minimal Flask-based simulation of a remote car controller. It demonstrates:
+- a simple in-memory `Car` model (`car.py`)
+- a local-only REST API (`app.py`) for querying status, starting, shutting down (simulation), and setting speed.
+
+## Why use this?
+- Learn about designing a safe API for device control *without* touching any hardware.
+- Test client-side apps / UI workflows against a predictable simulated backend.
+- Explore security best practices in a safe environment.
+
+## Running locally
+1. Create a Python virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate   # on Windows: venv\\Scripts\\activate
+pip install -r requirements.txt
+python app.py
