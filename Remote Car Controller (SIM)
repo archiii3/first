@@ -4,7 +4,8 @@
 
 from dataclasses import dataclass, field
 from datetime import datetime
-
+ if not self.is_on:
+            return {"ok": False, "msg": "Car already off"}
 @dataclass
 class Car:
     id: str
