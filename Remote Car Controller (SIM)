@@ -36,6 +36,10 @@ class Car:
 # Do NOT expose this to the public internet without proper security controls.
 from flask import Flask, jsonify, request, abort
 from car import Car
+id: str
+    is_on: bool = True
+    speed_kph: float = 0.0
+    last_updated: datetime = field(default_factory=datetime.utcnow)
 
 app = Flask(__name__)
 
