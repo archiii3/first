@@ -13,6 +13,9 @@ class Car:
     speed_kph: float = 0.0
     last_updated: datetime = field(default_factory=datetime.utcnow)
 
+from dataclasses import dataclass, field
+from datetime import datetime
+ if not self.is_on:
     def shutdown(self):
         if not self.is_on:
             return {"ok": False, "msg": "Car already off"}
