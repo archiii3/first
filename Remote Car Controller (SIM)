@@ -24,6 +24,8 @@ from datetime import datetime
         self.last_updated = datetime.utcnow()
         return {"ok": True, "msg": "Car shut down (simulation)"}
 
+from dataclasses import dataclass, field
+from datetime import datetime
     def start(self):
         if self.is_on:
             return {"ok": False, "msg": "Car already on"}
