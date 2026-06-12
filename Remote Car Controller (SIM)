@@ -12,7 +12,9 @@ class Car:
     is_on: bool = True
     speed_kph: float = 0.0
     last_updated: datetime = field(default_factory=datetime.utcnow)
-
+taclasses import dataclass, field
+from datetime import datetime
+ if not self.is_on:
 from dataclasses import dataclass, field
 from datetime import datetime
  if not self.is_on:
